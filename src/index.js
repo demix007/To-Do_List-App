@@ -90,8 +90,4 @@ window.onload = () => {
       }
     });
   });
-
-  document.querySelector('.clear-all-completed').addEventListener('click', () => {
-    clearCompleted();
-  });
 };
