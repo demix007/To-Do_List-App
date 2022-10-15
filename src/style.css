@@ -1,0 +1,114 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background-color: rgb(210, 186, 186);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-list-container {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(244, 238, 238);
+  width: 50%;
+  min-width: 30rem;
+  height: auto;
+  padding: 20px 0 0 0;
+  box-shadow: 0 4px 8px 0 rgba(31, 30, 30, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid rgba(59, 57, 57, 0.18);
+  border-radius: 0.5rem;
+}
+
+.tasks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #5c5c5c;
+  padding: 1rem 2rem;
+}
+
+.main-header {
+  margin: 0;
+}
+
+.add-item {
+  background: none;
+  outline: none;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 4rem;
+  border: none;
+}
+
+.add-item::placeholder {
+  font-style: italic;
+  letter-spacing: 0.1rem;
+}
+
+.enter-button {
+  transform: rotate(90deg);
+  border: none;
+  background: none;
+}
+
+.checkbox {
+  width: 2rem;
+  height: 2rem;
+}
+
+.description {
+  margin: 0;
+  padding: 1.6rem 2.1rem 0 2rem;
+  width: 100%;
+  resize: none;
+  background: none;
+  border: none;
+}
+
+.enter-button,
+.task-button,
+.clear-tasks {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  border: none;
+  color: #414141;
+  background: none;
+}
+
+.clear-completed {
+  background: #a8a5a5;
+  margin: 0;
+  width: 100%;
+  height: 50px;
+  color: #414141;
+  border: none;
+}
+
+.task-button:hover .trash.alternate {
+  color: rgb(139, 137, 137);
+}
+
+.clear-completed:hover,
+.clear:hover i,
+.enter-button:hover .level.down {
+  font-weight: 700;
+  color: rgb(111, 107, 107);
+}
