@@ -1,136 +1,97 @@
+import {
+  addTask, deleteTask, editTask, clearCompleted,
+} from './status.js';
 import './style.css';
 
-// Array data for todo-List
+window.onload = () => {
+  const todos = JSON.parse(localStorage.getItem('todo') || '[]');
+  const todoList = document.querySelector('.todoList');
 
-let tasksArray = [
-  {
-    index: 0,
-    description: 'Code',
-    completed: false,
-  },
-  {
-    index: 1,
-    description: 'Eat',
-    completed: false,
-  },
-  {
-    index: 2,
-    description: 'Sleep',
-    completed: false,
-  },
-];
+  todos.forEach(({ description, id, completed }) => {
+    todoList.innerHTML += `
+      <li class="listElements">
+        <div class="d-flex center-items list-group-1">
+          <input type="checkbox" ${completed && 'checked'} class="check-box" id="check-${id}">
+          <p class="task-description ${completed ? 'text-line' : ''}">${description}</p>
+          <input type="input" class="edit-input no-outline">
+        </div>
+        <div>
+          <i class="fas fa-trash-alt trash"></i>
+          <i class="fas fa-ellipsis-v"></i>
+        </div>
+      </li>
+      <hr>`;
+  });
 
-const createIndexes = () => {
-  for (let i = 0; i < tasksArray.length; i + 1) {
-    tasksArray[i].index = i;
-  }
-};
-
-const saveToLocalStorage = () => {
-  localStorage.setItem('todo_list', JSON.stringify(tasksArray));
-};
-
-const addToDo = (input) => {
-  const dataObj = {
-    index: 0,
-    description: '',
-    completed: false,
+  const changeTaskStatus = (index, status) => {
+    todos.filter((todo, todoIndex) => {
+      if (index === todoIndex) {
+        todo.completed = status;
+        todos.splice(index, 1, todo);
+      }
+      return false;
+    });
+    localStorage.setItem('todo', JSON.stringify(todos));
+    window.location.reload();
   };
 
-  dataObj.description = input;
-  tasksArray.push(dataObj);
-  createIndexes();
-  saveToLocalStorage();
-  window.location.reload();
-};
-
-const component = () => {
-  const toDoListContainer = document.querySelector('.todo-list-container');
-  let element = document.createElement('li');
-  element.className = 'tasks';
-
-  // Heading
-  const heading = document.createElement('h2');
-  heading.className = 'main-header';
-  heading.textContent = "Today's To Do";
-  element.appendChild(heading);
-
-  const clearTasks = document.createElement('button');
-  clearTasks.className = 'clear-tasks';
-  clearTasks.innerHTML = '<i class=\'sync alternate icon\'></i>';
-  element.appendChild(clearTasks);
-  toDoListContainer.appendChild(element);
-
-  // Add the day's todo tasks
-  element = document.createElement('li');
-  element.className = 'tasks';
-
-  const addTask = document.createElement('input');
-  addTask.className = 'add-item';
-  addTask.placeholder = 'Add to your list';
-  addTask.value = '';
-  element.appendChild(addTask);
-
-  const enterButton = document.createElement('button');
-  enterButton.className = 'enter-button';
-  enterButton.innerHTML = '<i class=\'level down alternate icon\'></i>';
-  element.appendChild = (enterButton);
-  toDoListContainer.appendChild(element);
-
-  addTask.addEventListener('keydown', (e) => {
-    if (e.keycode === 13) {
-      addToDo(addTask.value);
+  const inputElements = document.getElementById('input-box');
+  inputElements.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const newTask = {
+        description: inputElements.value,
+        completed: false,
+        index: todos.length + 1,
+      };
+      addTask(newTask, todos);
     }
   });
 
-  enterButton.addEventListener('click', () => {
-    addToDo(addTask.value);
+  document.querySelectorAll('.listElements').forEach((element, index) => {
+    element.addEventListener('dblclick', () => {
+      element.style.backgroundColor = 'bisque';
+      const deleteIcon = element.childNodes[3].childNodes[1];
+      const ellipsisIcon = element.childNodes[3].childNodes[3];
+      const taskDescription = element.childNodes[1].childNodes[3];
+      const editInput = element.childNodes[1].childNodes[5];
+
+      deleteIcon.style.display = 'flex';
+      ellipsisIcon.style.display = 'none';
+      editInput.style.display = 'flex';
+      taskDescription.style.display = 'none';
+
+      element.addEventListener('mouseleave', () => {
+        element.style.backgroundColor = 'transparent';
+        deleteIcon.style.display = 'none';
+        editInput.style.display = 'none';
+        ellipsisIcon.style.display = 'flex';
+        taskDescription.style.display = 'flex';
+      });
+
+      deleteIcon.addEventListener('click', () => {
+        deleteTask(index, todos);
+      });
+
+      editInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          const { value } = editInput;
+          editTask(index, value);
+        }
+      });
+    });
   });
 
-  // Populate the todo Items
-  tasksArray.forEach((todo) => {
-    element = document.createElement('li');
-    element.className = 'tasks';
-
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.className = 'checkbox';
-    checkbox.checked = todo.completed;
-    element.appendChild(checkbox);
-
-    const description = document.createElement('textarea');
-    description.className = 'description';
-    description.rows = 'auto';
-    description.value = todo.description.toLowerCase().charAt(0).toUpperCase();
-    description.value += todo.description.slice(1);
-    element.appendChild(description);
-
-    const taskButton = document.createElement('button');
-    taskButton.className = 'task-button';
-    taskButton.innerHTML = '<i class=\'ellipsis vertical icon\'></i>';
-    element.appendChild(taskButton);
-    toDoListContainer.appendChild(element);
+  document.querySelectorAll('.check-box').forEach((element, index) => {
+    element.addEventListener('change', () => {
+      if (element.checked) {
+        changeTaskStatus(index, true);
+      } else {
+        changeTaskStatus(index, false);
+      }
+    });
   });
 
-  // Clear completed button
-  element = document.createElement('li');
-
-  const clearCompletedTask = document.createElement('button');
-  clearCompletedTask.className = 'clear-completed';
-  clearCompletedTask.innerHTML = 'Clear all completed';
-  element.appendChild(clearCompletedTask);
-  toDoListContainer.appendChild(element);
+  document.querySelector('.clear-all-completed').addEventListener('click', () => {
+    clearCompleted();
+  });
 };
-
-const onPageLoad = () => {
-  window.onload = () => {
-    if (localStorage.getItem('todo_list') !== null) {
-      tasksArray = JSON.parse(localStorage.getItem('todo_list'));
-      component();
-    } else {
-      component();
-    }
-  };
-};
-
-onPageLoad();
