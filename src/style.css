@@ -110,6 +110,9 @@ input {
 
 .task-description {
   margin-left: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  color: black;
 }
 
 .edit-input {
