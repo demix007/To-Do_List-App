@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack watch --mode=development --config webpack.config.js",
-    "prod": "webpack --mode=production --config webpack.config.js"
+    "prod": "webpack --mode=production --config webpack.config.js",
+    "dev": "webpack --mode development",
+    "start": "webpack serve --open"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,8 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
-    "stylelint-scss": "^3.21.0"
+    "stylelint-scss": "^3.21.0",
+    "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
     "css-loader": "^6.7.1",
