@@ -1,5 +1,5 @@
 import {
-  addTask, deleteTask, editTask,
+  addTask, deleteTask, editTask, clearCompleted,
 } from './status.js';
 import './style.css';
 
