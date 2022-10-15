@@ -1,62 +1,43 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# To Do List-list-structure
 
-> Description the project.
-
+> This is a To Do list app project where I built a simple HTML list of To Do tasks. The list was styled according to the specifications listed by Microverse. This simple web page was built using webpack and served by a webpack dev server.
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- HTML
+- CSS
+- Javascript
+- Webpack
 
-## Live Demo (if available)
+## Live Demo    
 
-[Live Demo Link](https://livedemo.com)
-
+[Live Site Demo](https://demix007.github.io/To-Do_List-App/)
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
+- To get a local copy up and running follow these simple example steps:
 
 ### Setup
 
-### Install
+- Download or clone this Repo in your local machine.
 
 ### Usage
 
-### Run tests
+- Open the index.html with a live server.
 
-### Deployment
+👤 **Ayodeji Abidemi**
 
-
-
-## Authors
-
-👤 **Author1**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/demix007)
+- Twitter: [@twitterhandle](https://twitter.com/dat_dope_demix)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/ayodeji-abidemi-b76935218/)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/demix007/To-Do_List-App/issues).
 
 ## Show your support
 
@@ -64,9 +45,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Inspiration for this design was provided in the project requirements by Microverse.  
 
 ## 📝 License
 
